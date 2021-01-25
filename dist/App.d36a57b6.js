@@ -29788,7 +29788,12 @@ function Pet(_ref) {
   var name = _ref.name,
       animal = _ref.animal,
       breed = _ref.breed;
-  return _react.default.createElement("div", {}, [_react.default.createElement("h1", {}, name), _react.default.createElement("h2", {}, animal), _react.default.createElement("h2", {}, breed)]);
+  //   return React.createElement("div", {}, [
+  //     React.createElement("h1", {}, name),
+  //     React.createElement("h2", {}, animal),
+  //     React.createElemssent("h2", {}, breed),
+  //   ]);
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, name), /*#__PURE__*/_react.default.createElement("h1", null, animal), /*#__PURE__*/_react.default.createElement("h1", null, breed));
 }
 
 ;
@@ -29804,24 +29809,44 @@ var _Pet = _interopRequireDefault(require("./Pet"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-  return _react.default.createElement("div", {
+  // return React.createElement(
+  //   "div",
+  //   { id: "something-important" },
+  //   React.createElement("h1", {}, "Adompt ME"),
+  //   React.createElement(Pet, {
+  //     name: "Luna",
+  //     animal: "Dog",
+  //     breed: "Havenese",
+  //   }),
+  //   React.createElement(Pet, {
+  //     name: "Pepper",
+  //     animal: "Bird",
+  //     breed: "mixbreed",
+  //   }),
+  //   React.createElement(Pet, {
+  //     name: "Lunaaa",
+  //     animal: "Dog",
+  //     breed: "not know",
+  //   })
+  // );
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", {
     id: "something-important"
-  }, _react.default.createElement("h1", {}, "Adompt ME"), _react.default.createElement(_Pet.default, {
+  }, "Adopt Me!"), /*#__PURE__*/_react.default.createElement(_Pet.default, {
     name: "Luna",
     animal: "Dog",
     breed: "Havenese"
-  }), _react.default.createElement(_Pet.default, {
+  }), /*#__PURE__*/_react.default.createElement(_Pet.default, {
     name: "Pepper",
     animal: "Bird",
-    breed: "mixbreed"
-  }), _react.default.createElement(_Pet.default, {
-    name: "Lunaaa",
-    animal: "Dog",
-    breed: "not know"
+    breed: "Cocktail"
+  }), /*#__PURE__*/_react.default.createElement(_Pet.default, {
+    name: "Doink",
+    animal: "Cat",
+    breed: "Mixed"
   }));
 };
 
-(0, _reactDom.render)(_react.default.createElement(App), document.getElementById("root"));
+(0, _reactDom.render)( /*#__PURE__*/_react.default.createElement(App, null), document.getElementById("root"));
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./Pet":"Pet.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -29850,7 +29875,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62682" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57677" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
