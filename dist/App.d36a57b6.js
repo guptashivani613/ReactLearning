@@ -31446,7 +31446,67 @@ if (undefined === "mock") {
 }
 
 module.exports.ANIMALS = require("./animals");
-},{"./impl":"../node_modules/@frontendmasters/pet/impl.js","./animals":"../node_modules/@frontendmasters/pet/animals.js"}],"SearchParams.js":[function(require,module,exports) {
+},{"./impl":"../node_modules/@frontendmasters/pet/impl.js","./animals":"../node_modules/@frontendmasters/pet/animals.js"}],"useDropDown.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var useDropDown = function useDropDown(label, defaultState, options) {
+  var _useState = (0, _react.useState)(defaultState),
+      _useState2 = _slicedToArray(_useState, 2),
+      state = _useState2[0],
+      updateState = _useState2[1];
+
+  var id = "use-dropdown-".concat(label.replace(" ", "").toLowerCase());
+
+  var Dropdown = function Dropdown() {
+    return /*#__PURE__*/_react.default.createElement("label", {
+      htmlFor: id
+    }, label, /*#__PURE__*/_react.default.createElement("select", {
+      id: id,
+      value: state,
+      onChange: function onChange(e) {
+        return updateState(e.target.value);
+      },
+      onBlur: function onBlur(e) {
+        return updateState(e.target.value);
+      },
+      disabled: !options.length
+    }, /*#__PURE__*/_react.default.createElement("option", null), options.map(function (item) {
+      return /*#__PURE__*/_react.default.createElement("option", {
+        key: item,
+        value: item
+      }, item);
+    })));
+  };
+
+  return [state, Dropdown, updateState];
+};
+
+var _default = useDropDown;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"SearchParams.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31457,6 +31517,10 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _pet = require("@frontendmasters/pet");
+
+var _useDropDown5 = _interopRequireDefault(require("./useDropDown"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -31475,22 +31539,28 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var SearchParams = function SearchParams() {
+  console.log(_pet.ANIMALS);
+
   var _useState = (0, _react.useState)("Seattle, WA"),
       _useState2 = _slicedToArray(_useState, 2),
       location = _useState2[0],
-      setLocation = _useState2[1];
+      setLocation = _useState2[1]; // const [breed, setBreed] = useState("");
 
-  var _useState3 = (0, _react.useState)("Dog"),
+
+  var _useState3 = (0, _react.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      animal = _useState4[0],
-      setAnimal = _useState4[1];
+      breeds = _useState4[0],
+      setBreeds = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(""),
-      _useState6 = _slicedToArray(_useState5, 2),
-      breed = _useState6[0],
-      setBreed = _useState6[1]; // const [breed, setBreed] = useState([]);
-  //location - current Location, setLocation --
+  var _useDropDown = (0, _useDropDown5.default)("Animal", "dog", _pet.ANIMALS),
+      _useDropDown2 = _slicedToArray(_useDropDown, 2),
+      animal = _useDropDown2[0],
+      AnimalDropDown = _useDropDown2[1];
 
+  var _useDropDown3 = (0, _useDropDown5.default)("Breed", "", breeds),
+      _useDropDown4 = _slicedToArray(_useDropDown3, 2),
+      breed = _useDropDown4[0],
+      BreedDropDown = _useDropDown4[1];
 
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "search-params"
@@ -31503,45 +31573,12 @@ var SearchParams = function SearchParams() {
     },
     placeholder: "Location",
     value: location
-  })), /*#__PURE__*/_react.default.createElement("label", {
-    htmlFor: "animal"
-  }, "Animal", /*#__PURE__*/_react.default.createElement("select", {
-    id: "animal",
-    value: animal,
-    onChange: function onChange(e) {
-      return setAnimal(e.target.value);
-    },
-    onBlur: function onBlur(e) {
-      return setAnimal(e.target.value);
-    }
-  }, /*#__PURE__*/_react.default.createElement("option", null, "All"), _pet.ANIMALS.map(function (animal) {
-    return /*#__PURE__*/_react.default.createElement("option", {
-      key: animal,
-      value: animal
-    }, animal);
-  }))), /*#__PURE__*/_react.default.createElement("label", {
-    htmlFor: "breed"
-  }, "Breed", /*#__PURE__*/_react.default.createElement("select", {
-    id: "breed",
-    value: breed,
-    onChange: function onChange(e) {
-      return setBreed(e.target.value);
-    },
-    onBlur: function onBlur(e) {
-      return setBreed(e.target.value);
-    },
-    disabled: !breed.length
-  }, /*#__PURE__*/_react.default.createElement("option", null, "All"), breed.map(function (breed) {
-    return /*#__PURE__*/_react.default.createElement("option", {
-      key: breed,
-      value: breed
-    }, breed);
-  }))), /*#__PURE__*/_react.default.createElement("button", null, "Submit")));
+  })), /*#__PURE__*/_react.default.createElement(AnimalDropDown, null), /*#__PURE__*/_react.default.createElement(BreedDropDown, null), /*#__PURE__*/_react.default.createElement("button", null, "Submit")));
 };
 
 var _default = SearchParams;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","@frontendmasters/pet":"../node_modules/@frontendmasters/pet/index.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","@frontendmasters/pet":"../node_modules/@frontendmasters/pet/index.js","./useDropDown":"useDropDown.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -31587,7 +31624,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53210" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56833" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
